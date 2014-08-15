@@ -1,0 +1,15 @@
+EVS=/$PWD filter="*"{
+ workflow.rb
+ lib=lib{
+  rbbt=rbbt{
+   sources=sources{
+    EVS.rb
+   }
+  }
+ }
+ share=share{
+  rbbt_commands=rbbt_commands{
+   bootstrap
+  }
+ }
+}
