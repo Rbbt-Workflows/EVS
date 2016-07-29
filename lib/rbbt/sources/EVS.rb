@@ -6,7 +6,7 @@ module EVS
   extend Resource
   self.subdir = "share/databases/EVS"
 
-  EVS.claim EVS.data, :proc do |directory|
+  EVS.claim EVS['.source'], :proc do |directory|
     url = "http://evs.gs.washington.edu/evs_bulk_data/ESP6500SI-V2-SSA137.protein-hgvs-update.snps_indels.txt.tar.gz"
     io = Open.open(url, :nocache => true)
     Misc.untar(io, directory.find)
@@ -18,7 +18,7 @@ module EVS
 
     dumper.init
 
-    files = EVS.data.glob("*.chr*.txt")
+    files = EVS['.source'].glob("*.chr*.txt")
 
     saver = Thread.new {
       Misc.sensiblewrite(filename, dumper.stream)
